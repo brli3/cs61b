@@ -111,6 +111,7 @@ public class IntList {
     }
 
     public static IntList reverse(IntList A) {
+        if (A == null) return null;
         IntList a = A;
         IntList b = A.rest;
         IntList c = A.rest.rest;
