@@ -38,12 +38,10 @@ public class LinkedListDeque<T> {
     /** Add an item at front */
     public void addFirst(T item) {
         addBetween(item, header, header.next);
-        size++;
     }
 
     public void addLast(T item) {
         addBetween(item, trailer.prev, trailer);
-        size++;
     }
 
     public boolean isEmpty() {
