@@ -107,7 +107,7 @@ public class LinkedListDeque<T> {
         if (size == 0 || index < 0 || index >= size) {
             return null;
         }
-        return getRecursiveHelper(header, index);
+        return getRecursiveHelper(header.next, index);
     }
 
     public static void main(String[] args) {
