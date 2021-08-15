@@ -38,10 +38,12 @@ public class LinkedListDeque<T> {
     /** Add an item at front */
     public void addFirst(T item) {
         addBetween(item, header, header.next);
+        size++;
     }
 
     public void addLast(T item) {
         addBetween(item, trailer.prev, trailer);
+        size++;
     }
 
     public boolean isEmpty() {
@@ -61,7 +63,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         Node<T> first = header.next;
         first.next.prev = header;
         header.next = first.next;
@@ -70,7 +74,9 @@ public class LinkedListDeque<T> {
     }
 
     public T removeLast() {
-        if (isEmpty()) return null;
+        if (isEmpty()) {
+            return null;
+        }
         Node<T> last = trailer.prev;
         last.prev.next = trailer;
         trailer.prev = last.prev;
@@ -79,7 +85,9 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index) {
-        if (size == 0 || index < 0 || index >= size) return null;
+        if (size == 0 || index < 0 || index >= size) {
+            return null;
+        }
         Node<T> temp = header.next;
         while (index > 0) {
             index--;
@@ -90,14 +98,18 @@ public class LinkedListDeque<T> {
 
 
     public T getRecursiveHelper(Node<T> currNode, int index) {
-        if (index == 0) return currNode.item;
+        if (index == 0) {
+            return currNode.item;
+        }
         index--;
         return getRecursiveHelper(currNode.next, index);
     }
 
     public T getRecursive(int index) {
-        if (size == 0 || index < 0 || index >= size) return null;
-        return getRecursiveHelper(header.next, index);
+        if (size == 0 || index < 0 || index >= size) {
+            return null;
+        }
+        return getRecursiveHelper(header, index);
     }
 
     public static void main(String[] args) {
@@ -118,7 +130,6 @@ public class LinkedListDeque<T> {
         L.printDeque();
         System.out.println("Get item " + 2 + " :" + L.get(2));
         System.out.println("Get item recursively" + 2 + " :" + L.getRecursive(2));
-
     }
 
 }
