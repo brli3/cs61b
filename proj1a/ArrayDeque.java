@@ -51,6 +51,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (isEmpty()) return null;
         T oldFirst = items[nextFirst+1];
         items[nextFirst+1] = null;
         size--;
@@ -59,6 +60,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (isEmpty()) return null;
         T oldLast;
         if (nextLast == 0) {
             oldLast = items[items.length-1];
@@ -84,21 +86,21 @@ public class ArrayDeque<T> {
 
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<String> L = new ArrayDeque<>();
-        L.addLast("a");
-        L.addLast("b");
-        L.addFirst("c");
-        L.addLast("d");
-        L.addLast("e");
-
-        System.out.println("Size = " + L.size() + "\n\n");
-
-        L.printDeque();
-
-        L.removeFirst();
-
-        L.printDeque();
-    }
+//    public static void main(String[] args) {
+//        ArrayDeque<String> L = new ArrayDeque<>();
+//        L.addLast("a");
+//        L.addLast("b");
+//        L.addFirst("c");
+//        L.addLast("d");
+//        L.addLast("e");
+//
+//        System.out.println("Size = " + L.size() + "\n\n");
+//
+//        L.printDeque();
+//
+//        L.removeFirst();
+//
+//        L.printDeque();
+//    }
 }
 

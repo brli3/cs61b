@@ -95,7 +95,7 @@ public class LinkedListDeque<T> {
     }
 
 
-    public T getRecursiveHelper(Node<T> currNode, int index) {
+    private T getRecursiveHelper(Node<T> currNode, int index) {
         if (index == 0) {
             return currNode.item;
         }
@@ -110,24 +110,24 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(header.next, index);
     }
 
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> L = new LinkedListDeque<>();
-        L.addFirst(10);
-        L.addFirst(5);
-        L.addLast(15);
-        L.addLast(20);
-        L.printDeque();
-        System.out.println("Remove first and last");
-        int first = L.removeFirst();
-        int last = L.removeLast();
-        L.printDeque();
-        System.out.println("Add two items to the end");
-        L.addLast(25);
-        L.addLast(30);
-        System.out.println();
-        L.printDeque();
-        System.out.println("Get item " + 2 + " :" + L.get(2));
-        System.out.println("Get item recursively" + 2 + " :" + L.getRecursive(2));
-    }
+//    public static void main(String[] args) {
+//        LinkedListDeque<Integer> L = new LinkedListDeque<>();
+//        L.addFirst(10);
+//        L.addFirst(5);
+//        L.addLast(15);
+//        L.addLast(20);
+//        L.printDeque();
+//        System.out.println("Remove first and last");
+//        int first = L.removeFirst();
+//        int last = L.removeLast();
+//        L.printDeque();
+//        System.out.println("Add two items to the end");
+//        L.addLast(25);
+//        L.addLast(30);
+//        System.out.println();
+//        L.printDeque();
+//        System.out.println("Get item " + 2 + " :" + L.get(2));
+//        System.out.println("Get item recursively" + 2 + " :" + L.getRecursive(2));
+//    }
 
 }
