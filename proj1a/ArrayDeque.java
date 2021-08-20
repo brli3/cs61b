@@ -55,7 +55,7 @@ public class ArrayDeque<T> {
         return size;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
