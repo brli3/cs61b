@@ -1,5 +1,5 @@
 public class ArrayDeque<T> {
-    
+
     private T[] items;
     private int nextFirst;
     private int nextLast;
@@ -12,95 +12,143 @@ public class ArrayDeque<T> {
         size = 0;
     }
 
-    public void addFirst(T item) {
-       items[nextFirst] = item;
-       nextFirst--;
-       size++;
-       if (nextFirst == 0) {
-           nextFirst = size - 1;
-       }
-       if (nextFirst == nextLast) {
-           resize();
-       }
+
+    private boolean isFull() {
+        return size == items.length;
     }
 
-    public void addLast(T item) {
-       items[nextLast] = item;
-       nextLast++;
-       size++;
-       if (nextLast == items.length) {
-           nextLast = 0;
-       } 
-       if (nextFirst == nextLast) {
-           resize();
-       }
+    private boolean isSparse() {
+        return items.length >= 16 && size < (items.length*0.25);
     }
 
-    public boolean isEmpty() {
-        return size == 0;
+    private int plusOne(int index) {
+        return (index + 1) % items.length;
+    }
+
+    private int minusOne(int index) {
+        return (index - 1 + items.length) % items.length;
+    }
+
+    private void resize(int capacity) {
+        T[] newDeque = (T[]) new Object[capacity];
+        /* index of first item in the old deque */
+        int oldIndex = plusOne(nextFirst);
+        /* new deque starts from index 0 */
+        for (int newIndex = 0; newIndex < size; newIndex++) {
+            newDeque[newIndex] = items[oldIndex];
+            oldIndex = plusOne(oldIndex);
+        }
+        items = newDeque;
+        nextFirst = capacity - 1;
+        nextLast = size;
+    }
+
+    private void upSize() {
+        resize(size * 2);
+    }
+
+    private void downSize() {
+        resize(items.length / 2);
     }
 
     public int size() {
         return size;
     }
 
+    private boolean isEmpty() {
+        return size == 0;
+    }
+
     public void printDeque() {
-        for (T item : items) {
-            System.out.println(item);
+        for (int i = plusOne(nextFirst); i != nextLast; i = plusOne(i)) {
+            System.out.print(items[i] + " ");
         }
+        System.out.println();
+    }
+
+    public void addFirst(T item) {
+        if (isFull()) {
+            upSize();
+        }
+        items[nextFirst] = item;
+        nextFirst = minusOne(nextFirst);
+        size++;
+    }
+
+    public void addLast(T item) {
+        if (isFull()) {
+            upSize();
+        }
+        items[nextLast] = item;
+        nextLast = plusOne(nextLast);
+        size++;
     }
 
     public T removeFirst() {
-        if (isEmpty()) return null;
-        T oldFirst = items[nextFirst+1];
-        items[nextFirst+1] = null;
-        size--;
-        nextFirst++;
-        return oldFirst;
+        if (isSparse()) {
+            downSize();
+        }
+        nextFirst = plusOne(nextFirst);
+        T oldItem = items[nextFirst];
+        items[nextFirst] = null;
+        if (!isEmpty()) {
+            size--;
+        }
+        return oldItem;
     }
 
     public T removeLast() {
-        if (isEmpty()) return null;
-        T oldLast;
-        if (nextLast == 0) {
-            oldLast = items[items.length-1];
-            items[items.length-1] = null;
-            nextLast = items.length - 1;
-        } else {
-            oldLast = items[nextLast-1];
-            items[nextLast-1] = null;
-            nextLast--;
+        if (isSparse()) {
+            downSize();
         }
-        size--;
-        return oldLast;
+        nextLast = minusOne(nextLast);
+        T oldItem = items[nextLast];
+        items[nextLast] = null;
+        if (!isEmpty()) {
+            size--;
+        }
+        return oldItem;
     }
 
     public T get(int index) {
-        if (isEmpty() || index > items.length) {
+        if (index >= size) {
             return null;
-        } 
-        return items[index];
+        }
+        int start = plusOne(nextFirst);
+        return items[(start + index) % items.length];
     }
 
-    private void resize() {
+    /*
+       public static void main(String[] args) {
+       ArrayDeque<String> L = new ArrayDeque<>();
 
-    }
+       L.addLast("a");
+       L.addLast("b");
+       L.addFirst("c");
+       L.addLast("d");
+       L.addLast("e");
 
-//    public static void main(String[] args) {
-//        ArrayDeque<String> L = new ArrayDeque<>();
-//        L.addLast("a");
-//        L.addLast("b");
-//        L.addFirst("c");
-//        L.addLast("d");
-//        L.addLast("e");
-//
-//        System.out.println("Size = " + L.size() + "\n\n");
-//
-//        L.printDeque();
-//
-//        L.removeFirst();
-//
-//        L.printDeque();
-//    }
+       L.printDeque();
+
+       System.out.println("Size = " + L.size());
+       System.out.println();
+
+       L.removeFirst();
+
+       L.printDeque();
+
+       L.addLast("f");
+       L.addFirst("a");
+       L.addFirst("2");
+       L.addFirst("1");
+       L.addLast("g");
+       L.addLast("h");
+       L.addLast("i");
+
+       L.printDeque();
+
+       System.out.println("Size = " + L.size());
+       }
+     */
 }
 
