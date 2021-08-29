@@ -19,7 +19,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     private boolean isSparse() {
-        return items.length >= 16 && size < (items.length*0.25);
+        return items.length >= 16 && size < (items.length * 0.25);
     }
 
     private int plusOne(int index) {
@@ -129,7 +129,7 @@ public class ArrayDeque<T> implements Deque<T> {
         return items[(start + index) % items.length];
     }
 
-//    /*
+    /*
        public static void main(String[] args) {
        ArrayDeque<String> L = new ArrayDeque<>();
 
@@ -160,6 +160,6 @@ public class ArrayDeque<T> implements Deque<T> {
 
        System.out.println("Size = " + L.size());
        }
-//     */
+     */
 }
 

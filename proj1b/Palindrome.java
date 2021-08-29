@@ -64,9 +64,10 @@ public class Palindrome {
         return wordForward.equals(wordReverse);
     }
 
-    
+   /* 
     public static void main(String[] args) {
         Palindrome palindrome = new Palindrome();
         palindrome.wordToDeque("palindrome");
     }
+    */
 }
