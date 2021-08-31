@@ -38,6 +38,8 @@ public class TestArrayRingBuffer {
         assertFalse(arbIter.hasNext());
 
         for (double x : arb) {
+            for (double y : arb) {
+            }
         }
     }
 
