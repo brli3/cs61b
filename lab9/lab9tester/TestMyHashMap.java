@@ -129,6 +129,6 @@ public class TestMyHashMap {
 
     public static void main(String[] args) {
         //jh61b.junit.TestRunner.runTests(TestMyHashMap.class);
-        jh61b.junit.textui.runClasses(TestBSTMap.class);
+        jh61b.junit.textui.runClasses(TestMyHashMap.class);
     }
 }
