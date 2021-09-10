@@ -7,8 +7,8 @@ public class HashTableVisualizer {
 
     public static void main(String[] args) {
         /* scale: StdDraw scale
-           N:     number of items
-           M:     number of buckets */
+N:     number of items
+M:     number of buckets */
 
         /* After getting your simpleOomages to spread out
            nicely, be sure to try
@@ -21,7 +21,7 @@ public class HashTableVisualizer {
         HashTableDrawingUtility.setScale(scale);
         List<Oomage> oomies = new ArrayList<>();
         for (int i = 0; i < N; i += 1) {
-           oomies.add(SimpleOomage.randomSimpleOomage());
+            oomies.add(ComplexOomage.randomComplexOomage());
         }
         visualize(oomies, M, scale);
     }
