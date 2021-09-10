@@ -42,4 +42,8 @@ public class TestNiceSpreadOomage {
 
         assertTrue(OomageTestUtility.haveNiceHashCodeSpread(oomages, 10));
     }
+
+    public static void main(String[] args) {
+        jh61b.junit.textui.runClasses(TestNiceSpreadOomage.class);
+    }
 }
