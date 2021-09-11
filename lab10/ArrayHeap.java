@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.NoSuchElementException;
 
 /**
  * A Generic heap class. Unlike Java's priority queue, this heap doesn't just
@@ -208,13 +209,14 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
      */
     @Override
     public void changePriority(T item, double priority) {
-        /* TODO: Your code here! */
+        /* DONE: Your code here! */
         int i = 0;
         while (i <= size) {
-            if (getNode(i).myItem == item) {
+            if (getNode(i).myItem.equals(item)) {
                 break;
             }
             i += 1;
+            if (i > size) throw new NoSuchElementException("Item not in the heap");
         }
         double oldPriority = getNode(i).myPriority;
         getNode(i).myPriority = priority;
